@@ -1,9 +1,7 @@
 import React from 'react'
 import ProductCard from '../components/ProductCard/ProductCard'
-// import img from '../assets/frontend_assets/p'
 
 const Home = () => {
-    // HomePage.jsx ke andar, return se pehle
     const featuredProducts = [
         {
             id: 1,
