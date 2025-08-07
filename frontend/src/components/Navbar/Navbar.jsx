@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { FaUserCircle } from "react-icons/fa"
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { BsCart4 } from "react-icons/bs";
@@ -11,12 +12,20 @@ const Navbar = () => {
             {/* Left side of nav */}
             <div className='flex items-center gap-10'>
                 <div className='logo hover:cursor-pointer'>
-                    <h3 className='text-xl font-bold'>ShopKart</h3>
+                    <h3>
+                        <Link to='/' className='text-xl font-bold'>ShopKart</Link>
+                    </h3>
                 </div>
                 <ul className='hidden md:flex  list-none gap-6 mx-4  hover:cursor-pointer'>
-                    <li className='hover:text-gray-500 hover:cursor-pointer font-semibold '>Home</li>
-                    <li className='hover:text-gray-500 hover:cursor-pointer font-semibold '>Products</li>
-                    <li className='hover:text-gray-500 hover:cursor-pointer font-semibold '>Cart</li>
+                    <li>
+                       <Link to='/' className='hover:text-gray-500 hover:cursor-pointer font-semibold'>Home</Link> 
+                    </li>
+                    <li>
+                       <Link to='/products' className='hover:text-gray-500 hover:cursor-pointer font-semibold '>Products</Link> 
+                    </li>
+                    <li>
+                        <Link to='/about' className='hover:text-gray-500 hover:cursor-pointer font-semibold '>About</Link>
+                    </li>
                 </ul>
             </div>
 
