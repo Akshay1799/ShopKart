@@ -45,7 +45,7 @@ const Home = () => {
             </section>
             <section className="py-16">
                 <h2 className="text-4xl font-bold text-center mb-10">Featured Products</h2>
-                <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+                <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     {featuredProducts.map(item =>(
                         <ProductCard key={item.id} product={item}/>
                     ))}
