@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCart } from '../../context/cartContext'
+import { useCart } from '../../context/CartContext'
 
 const ProductCard = ({product}) => {
 
@@ -12,10 +12,10 @@ const ProductCard = ({product}) => {
                 <img className='w-full h-full object-contain' src={product.image} alt={product.title} />
             </div>
             <div className="flex-grow flex flex-col text-center">
-                <p className="text-sm text-gray-500 mb-1">{product.category}</p>
+                <p className="text-sm text-gray-500 mb-2">{product.category}</p>
                 <h3 className="text-lg font-bold mb-2 flex-wrap flex-grow">{product.title}</h3>
                 <p className="text-xl font-semibold mb-4">${product.price}</p>
-                <button onClick={()=>addToCart(product)}  className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-700 transition-colors hover:cursor-pointer">Add to cart</button>
+                <button onClick={()=>addToCart(product)}  className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-700 focus:outline-gray-500 hover:cursor-pointer">Add to cart</button>
             </div>
 
         </div>

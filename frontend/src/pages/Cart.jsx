@@ -1,9 +1,11 @@
 import React from 'react'
-import { useCart } from '../context/cartContext'
+import { useCart } from '../context/CartContext'
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-    const { cart } = useCart();
+    const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
+
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
     if (cart.length === 0) {
         return (
@@ -17,23 +19,56 @@ const Cart = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8 ">
             <h1 className="text-3xl font-bold text-center mb-8">Your Cart</h1>
-            <div className=" flex justify-center items-center gap-4 flex-wrap">
-                {cart.map(item => (
-                    <div key={item.id} className="flex text-center items-center justify-between py-6 border-1 rounded-2xl ">
-                        <div className="flex items-center gap-4 flex-col w-full h-80">
-                            <img src={item.image} alt={item.title} className="w-20 h-20 mb-2 object-contain rounded bg-white" />
-                            <h2 className="text-lg font-semibold max-w-md mb-4 px-8 text-wrap">{item.title}</h2>
-                            <div className='mt-auto'>
-                                <p className="text-gray-800 font-bold text-lg mt-1 mb-2">${item.price}</p>
-                                <button className="bg-black text-white rounded-2xl px-4 py-2 font-semibold hover:cursor-pointer">Remove</button>
-                            </div>
-                        </div>
-                    </div>
 
-                ))}
+            <div className="container mx-auto max-w-4xl px-4 py-8">
+                <h1 className="text-3xl font-bold text-center mb-8">Your Shopping Cart</h1>
+
+                {/* Yeh List Container hai, jo har item ko vertically stack karega */}
+                <div className="flex flex-col gap-6">
+                    {cart.map(item => (
+                        // 3. Yeh ek poora list item hai, jo full width lega
+                        <div key={item.id} className="flex flex-col sm:flex-row items-center justify-between p-4 bg-white shadow-lg rounded-lg border">
+
+                            {/* --- Left side: Image, Title, Price --- */}
+                            <div className="flex items-center gap-5">
+                                <img src={item.image} alt={item.title} className="w-24 h-24 object-contain rounded" />
+                                <div className="flex-grow">
+                                    <h2 className="text-lg font-bold">{item.title}</h2>
+                                    <p className="text-xl text-gray-800 font-semibold mt-1">${item.price}</p>
+                                </div>
+                            </div>
+
+                            {/* --- Right side: Quantity and Remove button --- */}
+                            <div className="flex items-center gap-8 mt-4 sm:mt-0">
+                                <div className="flex items-center gap-4">
+                                    <button onClick={() => decreaseQuantity(item.id)} className="px-3 py-1 border rounded-md hover:bg-gray-100 font-bold hover:cursor-pointer">-</button>
+                                    <span className="font-bold text-lg">{item.quantity}</span>
+                                    <button onClick={() => increaseQuantity(item.id)} className="px-3 py-1 border rounded-md hover:bg-gray-100 font-bold hover:cursor-pointer">+</button>
+                                </div>
+                                <button onClick={() => removeFromCart(item.id)} className="text-red-600  outline-1 rounded-4xl px-4 hover:cursor-pointer hover:bg-gray-50 font-semibold">
+                                    Remove
+                                </button>
+                            </div>
+
+                        </div>
+                    ))}
+                </div>
+
+                {/* Total Price Section */}
+                <div className="mt-8 pt-6 border-t-2 border-gray-300">
+                    <div className="flex justify-between items-center text-xl font-bold">
+                        <span>Subtotal</span>
+                        <span>${totalPrice.toFixed(2)}</span>
+                    </div>
+                    <p className="text-gray-500 text-right my-2">Taxes and shipping calculated at checkout.</p>
+                    <button className="w-full mt-4 bg-black text-white font-bold py-3 rounded-lg hover:bg-gray-600 text-lg  hover:cursor-pointer">
+                        Proceed to Checkout
+                    </button>
+                </div>
             </div>
+            
         </div>
     )
 }

@@ -1,15 +1,44 @@
 import React from 'react'
+import { useState, useEffect,useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from "react-icons/fa"
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { BsCart4 } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
-import { useCart } from '../../context/cartContext';
+import { useCart } from '../../context/CartContext';
 
 const Navbar = () => {
     const { cart } = useCart();
+    const [visible, setVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    const controlNavbar = useCallback(() => {
+        if (window.scrollY > 200) {
+            if (window.scrollY > lastScrollY) {
+                setVisible(false);
+            } else {
+                setVisible(true);
+            }
+        } else {
+            setVisible(true);
+        }
+        setLastScrollY(window.scrollY);
+    }, [lastScrollY]);
+    
+    useEffect(() => {
+
+      window.addEventListener('scroll',controlNavbar)
+    
+      return ()=>{
+        window.removeEventListener('scroll', controlNavbar)
+      }
+      
+    }, [controlNavbar])
+    
+    const totalItems = cart.reduce((total, item)=>total + item.quantity, 0);
+
     return (
-        <nav className='flex justify-between items-center text-black px-6 py-3'>
+        <nav className={`sticky shadow-md z-50 bg-gray-50 flex justify-between items-center text-black px-6 py-3 ${visible ? 'top-0' : '-top-24'}`}>
 
             {/* Left side of nav */}
             <div className='flex items-center gap-10'>
@@ -54,9 +83,9 @@ const Navbar = () => {
                     </div>
 
                     {/* 2. for the Badge, jo tabhi dikhega jab cart mein items honge */}
-                    {cart.length > 0 && (
+                    {totalItems > 0 && (
                         <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                            {cart.length}
+                            {totalItems}
                         </span>
                     )}
                 </Link>

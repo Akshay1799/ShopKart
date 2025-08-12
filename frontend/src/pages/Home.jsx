@@ -38,7 +38,7 @@ const Home = () => {
 
     return (
         <div>
-            <section className='bg-gray-100 text-center py-20 md:py-32'>
+            <section className=' text-center py-20 md:py-32'>
                 <h1 className="text-4xl md:text-6xl font-extrabold mb-4">Welcome to ShopKart</h1>
                 <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">Your one-stop destination for the latest trends and timeless classics.</p>
                 <button className="bg-black text-white font-bold py-3 px-10 rounded-full hover:bg-gray-700 hover:cup transition duration-300">Explore Products</button>
