@@ -12,7 +12,7 @@ const Cart = () => {
             <div className='text-center py-20'>
                 <h1 className='text-3xl font-bold mb-4'>Your cart is empty</h1>
                 <p className='text-gray-500 mb-8'>Looks like you haven't added anything to cart yet.</p>
-                <Link to={'/products'} className="bg-black text-white font-bold py-3 px-8 rounded-full hover:bg-gray-800">Continue Shopping</Link>
+                <Link to={'/products'} className="bg-black text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-rose-400 hover:rounded-full border-1 hover:duration-400 ease-out ">Continue Shopping</Link>
             </div>
         )
 
@@ -32,7 +32,7 @@ const Cart = () => {
                             <div className="flex items-center gap-5">
                                 <img src={item.image} alt={item.title} className="w-24 h-24 object-contain rounded" />
                                 <div className="flex-grow">
-                                    <h2 className="text-lg font-bold">{item.title}</h2>
+                                    <h2 className="text-lg font-semibold ">{item.title}</h2>
                                     <p className="text-xl text-gray-800 font-semibold mt-1">${item.price}</p>
                                 </div>
                             </div>
