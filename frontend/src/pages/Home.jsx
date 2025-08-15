@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useFilter } from '../context/FilterContext';
 import { useProduct } from '../context/ProductContext';
 
+
 const Home = () => {    
     // const {cart} = useCart();
     const{searchTerm} = useFilter();

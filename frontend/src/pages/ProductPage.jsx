@@ -19,7 +19,7 @@ const ProductPage = () => {
         return <div className='text-center py-10'>Loading Products...</div>
     }
     return (
-        <div className='container mx-auto px-4 py-8'>
+        <div className='container mx-auto px-4 py-26'>
             <h1 className="text-4xl font-bold text-center mb-10">All Products</h1>
 
             {filterProducts.length > 0 ? (
