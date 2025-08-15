@@ -9,6 +9,7 @@ import ProductPage from './pages/productPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import Wishlist from './pages/Wishlist.jsx' 
 import Cart from './pages/Cart.jsx'
+import 'react-alice-carousel/lib/alice-carousel.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 

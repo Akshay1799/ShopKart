@@ -10,7 +10,7 @@ const Wishlist = () => {
       <div className="text-center py-20">
         <h1 className="text-3xl font-bold mb-4">Your Wishlist is Empty</h1>
         <p className="text-gray-500 mb-8">You haven't added any products to your wishlist yet.</p>
-        <Link to="/products" className="bg-black text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-rose-400 hover:rounded-full border-1 hover:duration-400 ease-out ">
+        <Link to="/products" className="bg-black text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-rose-400 hover:rounded-full border-1 hover:duration-300 ease-out ">
           Add Your Favourite Products
         </Link>
       </div>

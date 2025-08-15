@@ -12,7 +12,7 @@ const Cart = () => {
             <div className='text-center py-20'>
                 <h1 className='text-3xl font-bold mb-4'>Your cart is empty</h1>
                 <p className='text-gray-500 mb-8'>Looks like you haven't added anything to cart yet.</p>
-                <Link to={'/products'} className="bg-black text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-rose-400 hover:rounded-full border-1 hover:duration-400 ease-out ">Continue Shopping</Link>
+                <Link to={'/products'} className="bg-black text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-rose-400 hover:rounded-full border-1 hover:duration-300 ease-out ">Continue Shopping</Link>
             </div>
         )
 
@@ -22,13 +22,12 @@ const Cart = () => {
             <div className="container mx-auto max-w-4xl px-4 py-8">
                 <h1 className="text-3xl font-bold text-center mb-8">Your Shopping Cart</h1>
 
-                {/* Yeh List Container hai, jo har item ko vertically stack karega */}
                 <div className="flex flex-col gap-6">
                     {cart.map(item => (
-                        // 3. Yeh ek poora list item hai, jo full width lega
+                        
                         <div key={item.id} className="flex flex-col sm:flex-row items-center justify-between p-4 bg-white shadow-lg rounded-lg border">
 
-                            {/* --- Left side: Image, Title, Price --- */}
+                            {/*  Left side: Image, Title, Price  */}
                             <div className="flex items-center gap-5">
                                 <img src={item.image} alt={item.title} className="w-24 h-24 object-contain rounded" />
                                 <div className="flex-grow">
@@ -37,7 +36,7 @@ const Cart = () => {
                                 </div>
                             </div>
 
-                            {/* --- Right side: Quantity and Remove button --- */}
+                            {/*  Right side: Quantity and Remove button  */}
                             <div className="flex items-center gap-8 mt-4 sm:mt-0">
                                 <div className="flex items-center gap-4">
                                     <button onClick={() => decreaseQuantity(item.id)} className="px-3 py-1 border rounded-md hover:bg-gray-100 font-bold hover:cursor-pointer">-</button>
