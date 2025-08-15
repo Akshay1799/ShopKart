@@ -7,6 +7,7 @@ import { BsCart4 } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 import { useCart } from '../../context/CartContext';
+import { FaBars, FaTimes } from "react-icons/fa";
 import logo from '/ShopKart_logo.png'
 import { useProduct } from '../../context/ProductContext';
 import { useFilter } from '../../context/FilterContext';
@@ -14,16 +15,18 @@ import { useFilter } from '../../context/FilterContext';
 const Navbar = () => {
     const { cart } = useCart();
     const navigate = useNavigate();
-    const {products} = useProduct()
+    const { products } = useProduct()
     const { searchTerm, setSearchTerm, setCategory } = useFilter();
 
     const [visible, setVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const dropdownRef = useRef(null)
 
-    const totalItems = cart.reduce((total,item) => total + item.quantity, 0);
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
     const categories = ['all', ...new Set(products.map(product => product.category))]
 
 
@@ -50,34 +53,37 @@ const Navbar = () => {
 
     }, [controlNavbar])
 
-     const handleCategoryClick = (category) =>{
+    // To handle click on drop down categories 
+    const handleCategoryClick = (category) => {
         setCategory(category);
         navigate('/products');
         setIsDropdownOpen(false);
     }
 
+    // To handle click outside the dropdown
     useEffect(() => {
-      const handleClickOutside = (event)=>{
-        
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        const handleClickOutside = (event) => {
 
-            setIsDropdownOpen(false);
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+
+                setIsDropdownOpen(false);
+            }
         }
-    }
 
         if (isDropdownOpen) {
             document.addEventListener('mousedown', handleClickOutside);
         }
 
-    
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
     }, [isDropdownOpen])
-    
+
 
     return (
-        <nav className={`sticky shadow-md z-50 backdrop-blur-[4px] flex justify-between items-center text-black px-6 py-3 ${visible ? 'top-0' : '-top-24'}`}>
+
+        <nav className={`sticky shadow-md z-50 visible backdrop-blur-[4px] flex justify-between items-center text-black px-6 py-3 ${visible ? 'top-0' : '-top-24'}`}>
 
             {/* Left side of nav */}
             <div className='flex items-center gap-10'>
@@ -92,20 +98,20 @@ const Navbar = () => {
                     </li>
                     <li className="relative" ref={dropdownRef}>
                         {/* Yeh button ab dropdown ko kholega/band karega */}
-                        <button 
+                        <button
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                             className="font-semibold flex items-center gap-1 hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-clip-text hover:text-transparent leading-normal"
                         >
-                            Products 
+                            Products
                             <svg className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7 " /></svg>
                         </button>
-                        
+
                         {/* Jab isDropdownOpen true ho, tabhi yeh div dikhega */}
                         {isDropdownOpen && (
-                            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white shadow-xl rounded-lg border z-50">
+                            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white shadow-xl rounded-lg  z-50">
                                 <ul className="py-2">
                                     {categories.map(cat => (
-                                        <li 
+                                        <li
                                             key={cat}
                                             onClick={() => handleCategoryClick(cat)}
                                             className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-800 hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-clip-text hover:text-transparent leading-normal"
@@ -143,8 +149,8 @@ const Navbar = () => {
                             />
                         ) : (
 
-                                <HiMagnifyingGlass size={24} className='pl-1' />
-                            
+                            <HiMagnifyingGlass size={24} className='pl-1' />
+
                         )}
                     </div>
                 </div>
@@ -153,7 +159,7 @@ const Navbar = () => {
                         <span>< CiHeart /></span>
                     </div>
                 </Link>
-                <Link to="/cart" className="relative"> 
+                <Link to="/cart" className="relative">
                     <div className='font-semibold hover:text-blue-500 text-gray-600 hover:cursor-pointer text-2xl'>
                         <BsCart4 />
                     </div>
@@ -166,10 +172,35 @@ const Navbar = () => {
                     )}
                 </Link>
                 <div>
-                    <FaUserCircle size={28} className='hover:cursor-pointer hover:text-pink-700' />
+                    <FaUserCircle size={28} className='hover:cursor-pointer hover:text-gray-600' />
                 </div>
+
+                {/* Hamburger Icon jo sirf mobile par dikhega  */}
+                <div className="md:hidden mt-2 ">
+                    <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                        {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+                    </button>
+                </div>
+                {isMenuOpen && (
+                    <div className="md:hidden absolute top-full left-2 w-2xl bg-gray-50 shadow-md ">
+                        <ul className="flex flex-col items-center py-4">
+                            <li className="py-2">
+                                <Link to='/' onClick={() => setIsMenuOpen(false)} className='font-semibold hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-clip-text hover:text-transparent leading-normal'>Home</Link>
+                            </li>
+                            <li className="py-2">
+                                <Link to='/products' onClick={() => setIsMenuOpen(false)} className='font-semibold hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-clip-text hover:text-transparent leading-normal'>Products</Link>
+                            </li>
+                            <li className="py-2">
+                                <Link to='/about' onClick={() => setIsMenuOpen(false)} className='font-semibold hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-clip-text hover:text-transparent leading-normal'>About</Link>
+                            </li>
+                        </ul>
+                    </div>
+                )}
             </div>
         </nav>
+
+
+
     )
 }
 
