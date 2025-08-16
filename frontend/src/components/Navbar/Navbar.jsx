@@ -14,6 +14,7 @@ import { BsInfo } from 'react-icons/bs';
 import logo from '/ShopKart_logo.png'
 import { useProduct } from '../../context/ProductContext';
 import { useFilter } from '../../context/FilterContext';
+import ProfilePage from '../../pages/ProfilePage';
 
 const Navbar = () => {
     const { cart } = useCart();
@@ -142,7 +143,7 @@ const Navbar = () => {
                             <BsCart4 size={26} className="hover:text-blue-500 mr-2" />
                             {totalItems > 0 && <span className="absolute -top-2 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{totalItems}</span>}
                         </Link>
-                        <Link to="/profile"><FaUserCircle size={28} className='hover:text-gray-600' /></Link>
+                        <Link to={'/profile'}><FaUserCircle size={28} className='hover:text-gray-600' /></Link>
                     </div>
 
                     {/* Hamburger Icon (sirf mobile par dikhega) */}
