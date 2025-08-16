@@ -20,7 +20,7 @@ const ProductPage = () => {
     }
     return (
         <div className='container mx-auto px-4 py-26'>
-            <h1 className="text-4xl font-bold text-center mb-10">All Products</h1>
+            <h1 className="text-4xl font-bold text-center mb-10">{category==='all'?'All Products':`All Products in ${category}`}</h1>
 
             {filterProducts.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
