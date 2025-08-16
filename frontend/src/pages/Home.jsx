@@ -29,7 +29,7 @@ const Home = () => {
                 <Link to={"/products"} className="bg-black text-white font-bold py-3 px-10 rounded-full hover:cup transition duration-300 hover:bg-white hover:text-rose-400 hover:rounded-full border-1 hover:duration-400 ease-out ">Explore Products</Link>
             </section>
             <section className="py-16">
-                <h2 className="text-4xl font-bold text-center mb-10">Featured Products</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">Featured Products</h2>
                 <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     {featuredProducts.map(item =>(
                         <ProductCard key={item.id} product={item}/>
