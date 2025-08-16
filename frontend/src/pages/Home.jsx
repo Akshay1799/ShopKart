@@ -23,7 +23,7 @@ const Home = () => {
     }
     return (
         <div>
-            <section className='text-center py-20 md:py-32 bg-gradient-to-t'>
+            <section className='text-center py-20 pt-30 md:py-32 bg-gradient-to-t'>
                 <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-linear-to-r from-pink-500 to-violet-500 leading-normal">Welcome to <span className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent '>ShopKart</span></h1>
                 <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">Your one-stop destination for the latest trends and timeless classics.</p>
                 <Link to={"/products"} className="bg-black text-white font-bold py-3 px-10 rounded-full hover:cup transition duration-300 hover:bg-white hover:text-rose-400 hover:rounded-full border-1 hover:duration-400 ease-out ">Explore Products</Link>
