@@ -1,9 +1,10 @@
 import React from 'react'
 import { useCart } from '../context/CartContext'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
+    const navigate = useNavigate();
 
     const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -19,7 +20,7 @@ const Cart = () => {
     }
 
     return (
-            <div className="container mx-auto max-w-4xl px-4 py-8">
+            <div className="container mx-auto max-w-4xl px-4 py-26">
                 <h1 className="text-3xl font-bold text-center mb-8">Your Shopping Cart</h1>
 
                 <div className="flex flex-col gap-6">
@@ -59,7 +60,9 @@ const Cart = () => {
                         <span>${totalPrice.toFixed(2)}</span>
                     </div>
                     <p className="text-gray-500 text-right my-2">Taxes and shipping calculated at checkout.</p>
-                    <button className="w-full mt-4 bg-black text-white font-bold py-3 rounded-lg hover:bg-gray-600 text-lg  hover:cursor-pointer">
+                    <button className="w-full mt-4 bg-black text-white font-bold py-3 rounded-lg hover:bg-gray-600 text-lg  hover:cursor-pointer"
+                    onClick={() => navigate('/checkout')}
+                    >
                         Proceed to Checkout
                     </button>
                 </div>

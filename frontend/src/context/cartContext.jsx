@@ -10,7 +10,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (productToAdd) => {
     setCart(prevCart => {
-      
+
       const existingProduct = prevCart.find(item => item.id === productToAdd.id);
 
       if (existingProduct) {
@@ -33,24 +33,26 @@ export const CartProvider = ({ children }) => {
 
   // --- NAYE FUNCTIONS (Agle step ke liye) ---
   const increaseQuantity = (productId) => {
-    setCart(prevCart => 
-      prevCart.map(item => 
+    setCart(prevCart =>
+      prevCart.map(item =>
         item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
   const decreaseQuantity = (productId) => {
-    setCart(prevCart => 
-      prevCart.map(item => 
+    setCart(prevCart =>
+      prevCart.map(item =>
         item.id === productId && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
       ).filter(item => item.quantity > 0) // Agar quantity 0 ho jaye toh item ko hata do
     );
   };
 
-
+  const clearCart = () => {
+    setCart([]);
+  }
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, increaseQuantity, decreaseQuantity }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart }}>
       {children}
     </CartContext.Provider>
   );

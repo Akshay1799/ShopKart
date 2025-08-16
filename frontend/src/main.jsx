@@ -9,6 +9,8 @@ import ProductPage from './pages/productPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import Wishlist from './pages/Wishlist.jsx' 
 import Cart from './pages/Cart.jsx'
+import CheckoutPage from './pages/CheckoutPage.jsx'
+import OrderConfirmationPage from './pages/OrderConfirmationPage.jsx'
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: 'cart',
         element: <Cart/>
+      },
+      {
+        path: 'Checkout',
+        element: <CheckoutPage/>
+      },
+      {
+        path: 'order-confirmation',
+        element: <OrderConfirmationPage/>
       }
     ]
   }

@@ -87,7 +87,7 @@ const Navbar = () => {
 
 
     return (
-        <nav className={`fixed w-full bg-white/80 backdrop-blur-sm shadow-md transition-transform duration-300 z-50 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
+        <nav className={`fixed w-full bg-white/50 backdrop-blur-sm shadow-md transition-transform duration-300 z-50 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
             {/* Main container for navbar content */}
             <div className="flex justify-between items-center text-black px-4 sm:px-6 py-3">
 
@@ -161,7 +161,7 @@ const Navbar = () => {
                     <ul className="flex flex-col py-2">
                         {/* Saare links aur icons ab yahan mobile menu mein  */}
                         <li className="py-2 px-4 hover:bg-gray-100"><Link to='/profile' onClick={() => setIsMenuOpen(false)} className='flex items-center gap-2 font-semibold'> <FaUserCircle size={20} /> Profile</Link></li>
-                        <li className="py-2 px-4 hover:bg-gray-100"><Link to='/' onClick={() => setIsMenuOpen(false)} className='font-semibold flex items-center'><BsHouse className='ml-0.5 mr-2.5'/>Home</Link></li>
+                        <li className="py-2 px-4 hover:bg-gray-100"><Link to='/' onClick={() => setIsMenuOpen(false)} className='font-semibold flex items-center hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-clip-text hover:text-transparent leading-normal'><BsHouse className='ml-0.5 mr-2.5'/>Home</Link></li>
                         <li className="py-2 px-4 w-full">
                             <button
                                 onClick={() => setMobileDropdownOpen(!isMobileDropdownOpen)}
@@ -188,9 +188,9 @@ const Navbar = () => {
                                     ))}
                                 </ul>
                             )}</li>
-                        <li className="py-2 px-4 hover:bg-gray-100"><Link to='/wishlist' onClick={() => setIsMenuOpen(false)} className='flex items-center gap-2 font-semibold'> <CiHeart size={20} /> Wishlist</Link></li>
-                        <li className="py-2 px-4 hover:bg-gray-100"><Link to='/cart' onClick={() => setIsMenuOpen(false)} className='flex items-center gap-2 font-semibold'> <BsCart4 size={20} /> Cart</Link></li>
-                        <li className="py-2 px-4 hover:bg-gray-100"><Link to='/about' onClick={() => setIsMenuOpen(false)} className='font-semibold flex items-center'><BsInfo className='ml-0.5 mr-2.5'/>About</Link></li>
+                        <li className="py-2 px-4 hover:bg-gray-100"><Link to='/wishlist' onClick={() => setIsMenuOpen(false)} className='flex items-center gap-2 font-semibold hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-clip-text hover:text-transparent leading-normal'> <CiHeart size={20} /> Wishlist</Link></li>
+                        <li className="py-2 px-4 hover:bg-gray-100"><Link to='/cart' onClick={() => setIsMenuOpen(false)} className='flex items-center gap-2 font-semibold hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-clip-text hover:text-transparent leading-normal'> <BsCart4 size={20} /> Cart</Link></li>
+                        <li className="py-2 px-4 hover:bg-gray-100"><Link to='/about' onClick={() => setIsMenuOpen(false)} className='font-semibold flex items-center hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-clip-text hover:text-transparent leading-normal'><BsInfo className='ml-0.5 mr-2.5'/>About</Link></li>
                     </ul>
                 </div>
             )}
