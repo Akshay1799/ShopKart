@@ -10,7 +10,7 @@ const Cart = () => {
 
     if (cart.length === 0) {
         return (
-            <div className='text-center py-20'>
+            <div className='text-center py-26'>
                 <h1 className='text-3xl font-bold mb-4'>Your cart is empty</h1>
                 <p className='text-gray-500 mb-8'>Looks like you haven't added anything to cart yet.</p>
                 <Link to={'/products'} className="bg-black text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-rose-400 hover:rounded-full border-1 hover:duration-300 ease-out ">Continue Shopping</Link>
